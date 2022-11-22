@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:45:17 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 11:41:50 by afrigger         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:31:44 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int	main(int argc, char **argv)
 			error();
 			return (0);
 		}
-		mlx_hook(mlx.window, 02, 0 , &hook, &mlx);
-		mlx_hook(mlx.window, 17, 0 , &fractol_exit, &mlx);
+		mlx_hook(mlx.window, 02, 0, &hook, &mlx);
+		mlx_hook(mlx.window, 17, 0, &fractol_exit, &mlx);
 		mlx_mouse_hook(mlx.window, mouse_hook, &mlx);
 		mlx_loop(mlx.mlx);
 	}

@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:16:44 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 11:12:06 by afrigger         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:20:09 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,6 @@ void	burningship(t_fractal *mlx);
 void	burningcalc(t_fractal *mlx, int x, int y);
 void	error(void);
 void	fractaltype(int argc, char **argv, t_fractal *mlx);
+void	render(t_fractal *mlx);
+
 #endif

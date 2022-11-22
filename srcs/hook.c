@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:50:35 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/21 15:29:50 by afrigger         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:26:26 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ int	fractol_exit(t_fractal *mlx)
 	exit(0);
 }
 
-int	mouse_hook(int keycode, int x, int y, t_fractal *mlx)
+void	zoom(int keycode, t_fractal *mlx)
 {
-	(void) x;
-	(void) y;
 	if (keycode == 4)
-	{	
+	{
 		mlx->ratio *= 1.5;
 		mlx->xoff += 370 * mlx->ratio;
 		mlx->yoff += 207 * mlx->ratio;
@@ -43,6 +41,16 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *mlx)
 		if (mlx->ratio < 1)
 			mlx->ratio = 1;
 	}
+}
+
+int	mouse_hook(int keycode, int x, int y, t_fractal *mlx)
+{
+	(void) x;
+	(void) y;
+	if (keycode == 4)
+		zoom(keycode, mlx);
+	else if (keycode == 5)
+		zoom(keycode, mlx);
 	if (mlx->type == 0)
 		mandelbrot(mlx);
 	else if (mlx->type == 1)
@@ -50,6 +58,16 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *mlx)
 	else if (mlx->type == 2)
 		burningship(mlx);
 	return (0);
+}
+
+void	render(t_fractal *mlx)
+{
+	if (mlx->type == 0)
+		mandelbrot(mlx);
+	else if (mlx->type == 1)
+		julia(mlx);
+	else if (mlx->type == 2)
+		burningship(mlx);
 }
 
 int	hook(int keycode, t_fractal *mlx)
@@ -74,16 +92,11 @@ int	hook(int keycode, t_fractal *mlx)
 		mlx->kr += 0.01;
 		mlx->ki += 0.01;
 	}
-	if (mlx->type == 0)
-		mandelbrot(mlx);
-	else if (mlx->type == 1)
-		julia(mlx);
-	else if (mlx->type == 2)
-		burningship(mlx);
+	render(mlx);
 	return (0);
 }
 
-//********************************************************************************************
+//*********************************************************
 
 // int	julia_hook(int keycode, t_fractal *mlx)
 // {

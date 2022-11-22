@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:51:47 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/21 15:10:49 by afrigger         ###   ########.fr       */
+/*   Updated: 2022/11/22 12:28:45 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,12 @@ void	mandelbrot(t_fractal *mlx)
 	while (++y < HEIGHT)
 	{
 		mlx->ci = (y + mlx->yoff) / mlx->zoom + mlx->rmin ;
-		//mlx->imax - y * mlx->ifactor ;
 		while (++x < WIDTH)
 		{
 			mlx->cr = (x + mlx->xoff) / mlx->zoom + mlx->imin;
-			//mlx->rmin + x * mlx->rfactor ;
 			mandelcalc(mlx, x, y);
 		}
 		x = -1;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 }
-
