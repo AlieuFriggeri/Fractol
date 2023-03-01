@@ -1,24 +1,24 @@
 GREENGREEN = \033[38;5;46m
 RED = \033[0;31m
-BLUE = \033[0;34m
 GREY = \033[38;5;240m
 RESET = \033[0m
 
-NAME = fractol
+NAME =     fractol
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O3
-RM = rm -rf
+CC =         gcc
+CFLAGS =     -Wall -Wextra -Werror -O3
+RM =         rm -rf
 
 DIR_H = headers/
 DIR_S =	srcs/
+CREATE_DIR_O = @mkdir -p objs
 DIR_O =	objs/
 
-SRCS_LIST = init.c mandelbrot.c main.c hook.c julia.c colors.c burningship.c
+SRCS_LIST =	init.c mandelbrot.c main.c hook.c julia.c colors.c burningship.c
 
-SRCS = $(addprefix $(DIR_S), $(SRCS_LIST))
+SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 
-OBJS = $(SRCS:$(DIR_S)%.c=$(DIR_O)%.o)
+OBJS =		${SRCS:${DIR_S}%.c=${DIR_O}%.o}
 
 # Compile la Libft
 DIR_LIBFT = libft/
@@ -29,54 +29,73 @@ FT_LNK = -L ${DIR_LIBFT} -l ft
 # Compile la MiniLibX suivant l'OS
 ifeq (${shell uname}, Linux)
 	DIR_MLX = mlx_linux/
-	MLX_LNK	= -L $(DIR_MLX) -lXext -lX11 -lbsd -l mlx
+	MLX_LNK	= -L $(DIR_MLX) -lmlx -lXext -lX11 -lbsd -lm
 else
 	DIR_MLX = mlx_macos/
 	MLX_LNK	= -L $(DIR_MLX) -l mlx -framework OpenGL -framework AppKit
 endif
 MLX_INC = -I ${DIR_MLX}
-MLX =	${DIR_MLX}/mlx.a
+MLX =	${DIR_MLX}libmlx.a
 
-LIBS = $(FT_LNK) $(MLX_LNK)
+LIBS = ${FT_LNK} ${MLX_LNK}
 
-$(NAME): $(LIBFT) $(MLX) $(OBJS)
-	@echo "$(BLUE)  ______ _____ ########## _____ _______ ____  _ $(RESET)"
-	@echo "$(GREENGREEN) |  ____|  __ \     /\   / ____|__   __/ __ \| | $(RESET)"
-	@echo "$(GREENGREEN) | |__  | |__| |   /  \ | |       | | | |  | | |$(RESET)"
-	@echo "$(GREENGREEN) |  __| |  _  /   / /\ \| |       | | | |  | | | $(RESET)"
-	@echo "$(GREENGREEN) | |    | | \ \  / ____ \ |____   | | | |__| | |____ $(RESET)"
-	@echo "$(BLUE) |_|    |_|  \_\/_/    \_\_____|  |_|  \____/|______|$(RESET)"
+# ${NAME}: title ${LIBFT} ${MLX} ${OBJS}
+${NAME}: ${LIBFT} ${MLX} ${OBJS}
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: Fractol Objects were created${GREY}"
 	${CC} ${OBJS} ${LIBS} -o ${NAME}
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: Fractol created !"
 
-$(LIBFT):
-	$(MAKE) -sC $(@D)
+title:
+	@echo "$(GREENGREEN) ██████╗██████╗  █████╗  ██████╗████████╗    ██████╗ ██╗$(RESET)"
+	@echo "$(GREENGREEN) ██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝   ██╔═══██╗██║$(RESET)"
+	@echo "$(GREENGREEN) █████╗  ██████╔╝███████║██║        ██║█████╗██║   ██║██║$(RESET)"
+	@echo "$(GREENGREEN) ██╔══╝  ██╔══██╗██╔══██║██║        ██║╚════╝██║   ██║██║$(RESET)"
+	@echo "$(GREENGREEN) ██║     ██║  ██║██║  ██║╚██████╗   ██║      ╚██████╔╝███████╗$(RESET)"
+	@echo "$(GREENGREEN) ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝       ╚═════╝ ╚══════╝$(RESET)"
 
-$(MLX):
-	$(MAKE) -sC $(@D)
+${LIBFT}:
+	@echo "[$(GREENGREEN)${NAME}$(RESET)]: Creating Libft...${GREY}"
+	${MAKE} -sC ${@D}
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: Libft Objects were created"
 
-all: $(NAME)
+${MLX}:
+	@echo "[$(GREENGREEN)${NAME}$(RESET)]: Creating MLX...$(GREY)"
+	${MAKE} -sC ${@D}
+	@echo "$(RESET)[$(GREENGREEN)${NAME}$(RESET)]: MLX Objects were created"
+	@echo "${RESET}[$(GREENGREEN)${NAME}$(RESET)]: Creating Fractol Objects...${GREY}"
+
+all: ${NAME}
 
 ${DIR_O}%.o:${DIR_S}%.c
+	@printf "\033[38;5;240m"
 	@mkdir -p ${DIR_O}
 	${CC} ${CFLAGS} ${LIBFT_INC} ${MLX_INC} -I ${DIR_H} -o $@ -c $<
-# ${CC} ${CFLAGS} -I ${DIR_H} ${LIBFT_INC} ${MLX_INC} -o $@ -c $<
 
 clean:
-	@echo "$(RED)╔═╗╔═╗╔═╗╔╦╗╔╗ ╦ ╦╔═╗$(RESET)"
-	@echo "$(RED)║ ╦║ ║║ ║ ║║╠╩╗╚╦╝║╣$(RESET)"
-	@echo "$(RED)╚═╝╚═╝╚═╝═╩╝╚═╝ ╩ ╚═╝$(RESET)"
-	$(RM) $(OBJS)
+	@echo "$(RED) ██████╗██╗     ███████╗ █████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗$(RESET)"
+	@echo "$(RED) ██╔════╝██║     ██╔════╝██╔══██╗████╗  ██║██║████╗  ██║██╔════╝$(RESET)"
+	@echo "$(RED) ██║     ██║     █████╗  ███████║██╔██╗ ██║██║██╔██╗ ██║██║  ███╗$(RESET)"
+	@echo "$(RED) ██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██║██║╚██╗██║██║   ██║$(RESET)"
+	@echo "$(RED) ╚██████╗███████╗███████╗██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝$(RESET)"
+	@echo "$(RED)  ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝ $(RESET)"
+	@echo "[$(RED)${NAME}$(RESET)]: Cleaning Fractol Objects...${GREY}"
+	${RM} ${OBJS}
 	${RM} ${DIR_O}
+	@echo "[$(RED)${NAME}$(RESET)]: Fractol Objects were cleaned${GREY}"
 
 libclean:
-	@echo "Clean de MiniLibX"
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: Cleaning MLX...${GREY}"
 	${MAKE} -sC ${DIR_MLX} clean
-	@echo "Clean de libft"
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: MLX Objects were cleaned"
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: Cleaning Libft...${GREY}"
 	${MAKE} -sC ${DIR_LIBFT} fclean
-	
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: Libft Objects were cleaned"
+
 fclean: clean libclean
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: Cleaning Fractol...${GREY}"
 	${RM} ${NAME}
+	@echo "${RESET}[$(RED)${NAME}$(RESET)]: Fractol Executable was cleaned"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re title libclean 
