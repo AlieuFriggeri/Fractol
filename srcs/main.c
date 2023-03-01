@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:45:17 by afrigger          #+#    #+#             */
-/*   Updated: 2023/03/01 11:29:51 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:56:13 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	fractaltype(int argc, char **argv, t_fractal *mlx)
 
 void	error(void)
 {
-	ft_putstr_fd("Please select a valid fractal(mandelbrot/julia)\n", 1);
+	ft_putstr_fd("Please select a valid fractal(mandelbrot/julia/burningship)\n", 1);
 	ft_putstr_fd("For julia, please insert constant\n", 1);
-	ft_putstr_fd("Ex : ./fractol julia 0.420 0.69", 1);
+	ft_putstr_fd("Ex : ./fractol julia (0.420 0.69)", 1);
 }
 
 int	main(int argc, char **argv)

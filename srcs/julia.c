@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:31:56 by afrigger          #+#    #+#             */
-/*   Updated: 2023/03/01 11:30:05 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:58:07 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_base(char **argv, int argc, t_fractal *mlx)
 	}
 	else
 	{
-		mlx->kr = 0.79;
-		mlx->ki = 0.220;
+		mlx->kr = -1.417022285618;
+		mlx->ki = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:11:05 by afrigger          #+#    #+#             */
-/*   Updated: 2023/03/01 11:21:56 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 12:44:39 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	burningcalc(t_fractal *mlx, int x, int y)
 	i = -1;
 	zr = mlx->cr;
 	zi = mlx->ci;
+	mlx->itmax = 64;
 	while (++i < mlx->itmax)
 	{
 		zr2 = zr * zr;

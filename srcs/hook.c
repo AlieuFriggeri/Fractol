@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:50:35 by afrigger          #+#    #+#             */
-/*   Updated: 2023/03/01 11:05:33 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:49:03 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	zoom(int keycode, t_fractal *mlx)
 		mlx->ratio -= (mlx->ratio / 3);
 		if (mlx->ratio < 1)
 			mlx->ratio = 1;
+		if (mlx->zoom < 20)
+			mlx->zoom = 20;
+		if (mlx->xoff < -888)
+			mlx->xoff = -888;
+		if (mlx->yoff < -496)
+			mlx->yoff = -496;
 	}
 }
 
