@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:13:03 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:29:21 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:21:54 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@
 # define PURPLE 			0x8000FF
 
 void	put_color(t_fractal *mlx, int x, int y, int i);
+int		encode_rgb(t_fractal *data, double ratio);
+int		choose_color(int iter, double zr2, double zi2, t_fractal *data);
 
 #endif

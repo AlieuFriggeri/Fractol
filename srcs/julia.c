@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:31:56 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:16:46 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:30:05 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	juliacalc(t_fractal *mlx, int x, int y)
 		zi = 2 * zr * zi + mlx->ki;
 		zr = zr2 - zi2 + mlx->kr;
 	}
+	mlx->color = choose_color(i, zr2, zi2, mlx);
 	put_color(mlx, x, y, i);
 }
 
@@ -54,4 +55,18 @@ void	julia(t_fractal *mlx)
 		x = -1;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
+}
+
+void	set_base(char **argv, int argc, t_fractal *mlx)
+{
+	if (argc == 4)
+	{
+		mlx->ki = atod(argv[3]);
+		mlx->kr = atod(argv[2]);
+	}
+	else
+	{
+		mlx->kr = 0.79;
+		mlx->ki = 0.220;
+	}
 }

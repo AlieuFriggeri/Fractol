@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:16:44 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:20:09 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:30:45 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ typedef struct s_fractal
 	double	ratio;
 	int		type;
 	int		count;
+	int		color;
+	int		color_r;
+	int		color_g;
+	int		color_b;
+	int		palette;
 }	t_fractal;
 
 void	my_mlx_pixel_put(t_fractal *data, int x, int y, int color);
@@ -64,5 +69,9 @@ void	burningcalc(t_fractal *mlx, int x, int y);
 void	error(void);
 void	fractaltype(int argc, char **argv, t_fractal *mlx);
 void	render(t_fractal *mlx);
+void	palette_change(int keycode, t_fractal *mlx);
+void	set_rgb(t_fractal *mlx);
+void	set_base(char **argv, int argc, t_fractal *mlx);
+double	atod(char *str);
 
 #endif

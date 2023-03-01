@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:45:17 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:31:44 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:29:51 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ void	fractaltype(int argc, char **argv, t_fractal *mlx)
 		mlx->type = 0;
 		mandelbrot(mlx);
 	}
-	else if (ft_strncmp(argv[1], "julia", 5) == 0 && argc == 4)
+	else if (ft_strncmp(argv[1], "julia", 5) == 0 && (argc == 4 || argc == 2))
 	{
-		mlx->ki = atod(argv[3]);
-		mlx->kr = atod(argv[2]);
+		set_base(argv, argc, mlx);
 		juliainit(mlx);
 		mlx->type = 1;
 		julia(mlx);

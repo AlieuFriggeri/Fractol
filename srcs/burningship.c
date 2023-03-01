@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:11:05 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:29:02 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:21:56 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	burningcalc(t_fractal *mlx, int x, int y)
 		zi = 2 * fabs(zr) * fabs(zi) + mlx->ci;
 		zr = zr2 - zi2 + mlx->cr;
 	}
+	mlx->color = choose_color(i, zr2, zi2, mlx);
 	put_color(mlx, x, y, i);
 }
 

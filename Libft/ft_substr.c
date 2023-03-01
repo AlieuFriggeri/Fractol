@@ -15,9 +15,11 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*res;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
+	i = 0;
 	if (start >= ft_strlen(s))
 	{
 		res = malloc(1);

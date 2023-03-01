@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:50:35 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:26:26 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:05:33 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	zoom(int keycode, t_fractal *mlx)
 		mlx->xoff += 370 * mlx->ratio;
 		mlx->yoff += 207 * mlx->ratio;
 		mlx->zoom += 100 * mlx->ratio;
-		mlx->itmax += 4;
+		mlx->itmax += 7;
 	}
 	else if (keycode == 5)
 	{
 		mlx->xoff -= 370 * mlx->ratio;
 		mlx->yoff -= 207 * mlx->ratio;
 		mlx->zoom -= 100 * mlx->ratio;
-		mlx->itmax -= 4;
+		mlx->itmax -= 7;
 		mlx->ratio -= (mlx->ratio / 3);
 		if (mlx->ratio < 1)
 			mlx->ratio = 1;
@@ -72,12 +72,13 @@ void	render(t_fractal *mlx)
 
 int	hook(int keycode, t_fractal *mlx)
 {
+	palette_change(keycode, mlx);
 	if (keycode == 53)
 		fractol_exit(mlx);
 	else if (keycode == 126)
-		mlx->rmin += 0.15 / mlx->ratio;
-	else if (keycode == 125)
 		mlx->rmin -= 0.15 / mlx->ratio;
+	else if (keycode == 125)
+		mlx->rmin += 0.15 / mlx->ratio;
 	else if (keycode == 123)
 		mlx->imin -= 0.12 / mlx->ratio;
 	else if (keycode == 124)

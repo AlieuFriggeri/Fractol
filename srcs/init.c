@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:37:48 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:28:08 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:27:09 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ void	mandelinit(t_fractal *mlx)
 	mlx->imax = (mlx->rmax - mlx->rmin) * HEIGHT / WIDTH;
 	mlx->rfactor = (mlx->rmax - mlx->rmin) / (WIDTH);
 	mlx->ifactor = (mlx->imax - mlx->imin) / (HEIGHT);
-	mlx->itmax = 35;
+	mlx->itmax = 50;
 	mlx->zoom = 260;
 	mlx->yoff = 0;
 	mlx->xoff = 0;
 	mlx->ratio = 1.4;
+	mlx->palette = 1;
+	mlx->color_r = 1;
+	mlx->color = 1;
 }
 
 void	juliainit(t_fractal *mlx)
@@ -45,6 +48,9 @@ void	juliainit(t_fractal *mlx)
 	mlx->xoff = 0;
 	mlx->ratio = 1.4;
 	mlx->count = 0;
+	mlx->palette = 1;
+	mlx->color_r = 1;
+	mlx->color = 1;
 }
 
 // void    juliainit(t_fractal *mlx)

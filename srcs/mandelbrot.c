@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:51:47 by afrigger          #+#    #+#             */
-/*   Updated: 2022/11/22 12:28:45 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:22:50 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	mandelcalc(t_fractal *mlx, int x, int y)
 		zi = 2 * zr * zi + mlx->ci;
 		zr = zr2 - zi2 + mlx->cr;
 	}
+	mlx->color = choose_color(i, zr2, zi2, mlx);
 	put_color(mlx, x, y, i);
 }
 
@@ -44,7 +45,7 @@ void	mandelbrot(t_fractal *mlx)
 	x = -1;
 	y = -1;
 	while (++y < HEIGHT)
-	{
+	{	
 		mlx->ci = (y + mlx->yoff) / mlx->zoom + mlx->rmin ;
 		while (++x < WIDTH)
 		{
